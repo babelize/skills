@@ -92,6 +92,7 @@ Extraction is pattern-based, so it also wraps strings that look like text but ar
 
 - Page metadata: `<title>`, `metadata` / `generateMetadata` in Next.js, meta descriptions, Open Graph text.
 - `<html lang>` (and `dir` for right-to-left languages) should change with the locale. Open a translated page or route to check.
+- **Right-to-left layout** (`ar`, `he`, `fa`, `ur`): translated strings aren't enough if the CSS still says `margin-left`, `padding-right`, `left: 0` or `text-align: left`; the RTL version comes out mirrored wrong. Point out physical properties and suggest logical ones (`margin-inline-start`, `padding-inline-end`, `inset-inline-start`, `text-align: start`; Tailwind `ms-*`, `pe-*`, `start-*`). Directional icons like arrows may need flipping.
 - Text in images, emails, server-rendered error pages and anything built from data.
 
 ## Framework notes
