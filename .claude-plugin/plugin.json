@@ -1,0 +1,10 @@
+{
+  "name": "babelize",
+  "description": "Make apps multilingual and keep translations in sync: localize React, Next.js, Vue, React Native, Django and HTML apps, fill missing keys, add languages, translate docs, pseudo-localize, and check translations in CI. Reviews the diff so only UI text changes.",
+  "version": "1.0.0",
+  "author": { "name": "Babelize", "url": "https://babelize.co" },
+  "homepage": "https://github.com/babelize/skills",
+  "repository": "https://github.com/babelize/skills",
+  "license": "MIT",
+  "keywords": ["i18n", "localization", "translation", "next-intl", "react-i18next", "vue-i18n", "expo", "django", "mdx"]
+}

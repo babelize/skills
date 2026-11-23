@@ -1,0 +1,12 @@
+{
+  "name": "babelize",
+  "owner": { "name": "Babelize", "url": "https://babelize.co" },
+  "metadata": { "description": "Agent skills for app localization by Babelize" },
+  "plugins": [
+    {
+      "name": "babelize",
+      "source": "./",
+      "description": "Localize apps, sync translations, translate docs and check i18n in CI"
+    }
+  ]
+}
