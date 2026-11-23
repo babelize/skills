@@ -28,7 +28,9 @@ or, in Claude Code: `/plugin marketplace add babelize/skills` then `/plugin inst
 | [**i18n-ci-check**](skills/i18n-ci-check/SKILL.md) | *"Fail CI when translations are missing"* | A GitHub Actions step (or any CI) that blocks missing keys and broken placeholders. No account or key needed. |
 | [**auto-translate-on-push**](skills/auto-translate-on-push/SKILL.md) | *"Keep translations in sync automatically"* | Sets up the Babelize GitHub App: every push gets its new strings translated in one pull request that stays updated. Free plan included. |
 
-Supports React, Next.js, Vue, React Native / Expo, Django and static HTML. Translations come from your own LLM key (Anthropic, OpenAI, Gemini, Groq, OpenRouter), Babelize's free hosted tier, or offline pseudo-localization.
+Supports React, Next.js, Vue, React Native / Expo, Django and static HTML.
+
+**No API key needed.** By default your agent translates the strings itself: Babelize finds and wraps them, wires up i18n and lists exactly what's left to translate, the agent writes the translations, and `babelize check` validates every placeholder and plural. For large apps you can hand translation to your own LLM key (Anthropic, OpenAI, Gemini, Groq, OpenRouter) or Babelize's free hosted tier instead.
 
 ## Why a skill, not just a prompt
 
@@ -39,13 +41,14 @@ Asking an agent to "add i18n" works once, for the files it happens to open. Thes
 - **Existing translations are kept**, including the ones a human fixed.
 - **The agent still reviews the result.** Extraction is pattern-based, so the skills tell the agent exactly what to check: LLM prompts, values the code compares, brand names, plurals, page metadata, `<html lang>`.
 
-## Try it without a key
+## Try it
 
 ```text
-"Show me what localizing this app into French would look like, offline"
+"Translate this app into French and German"
+"Show me what localizing this app would look like, offline"
 ```
 
-The agent runs a pseudo-localization pass: you see every wrapped string and the i18n wiring in `git diff`, and nothing leaves your machine.
+The first gives you a working translated app with no setup. The second is a pseudo-localization pass: every wrapped string and the i18n wiring in `git diff`, with fake text and nothing leaving your machine.
 
 ## Links
 

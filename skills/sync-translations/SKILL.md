@@ -21,6 +21,8 @@ Tell the user the counts per language.
 
 ## 2. Fill them, or add a language
 
+With a key, the CLI does it in one command:
+
 ```bash
 npx babelize translate --to de,fr --provider <name> --yes        # the project's languages
 npx babelize translate --to de,fr,es --provider <name> --yes     # plus a new one
@@ -32,7 +34,13 @@ List every language the project has, plus any new one. Don't pass `--replace`: i
 
 One exception: in a setup that Babelize itself generated earlier, don't delete that lockfile. Without it, the next run can't tell hand edits apart and re-translates everything.
 
-Provider: the user's own key from the environment (`anthropic`, `openai`, `gemini`, `groq`, `openrouter`, reading `<NAME>_API_KEY`), Babelize's free hosted tier (`npx babelize auth login` or `BABELIZE_API_KEY`, then `babelize`), or `pseudo` to preview offline (fake text, never commit it). Ask which; never ask for a key in chat.
+Who translates (ask only if the request doesn't settle it):
+
+- **You, the agent (default when there's no key):** skip `translate` for the missing keys. `npx babelize check --json` lists each one under `sets[].locales[].issues[]` (`"code": "missing_key"`, with `locale` and `key`); add the translation to that locale file yourself, from the source locale's text, keeping the file's structure and key order, every `{placeholder}`, ICU plural syntax with every plural category the target language uses (fr: one/many/other; de, es: one/other plus `many` for es; ru, pl: one/few/many/other; ar: all six; ja, zh: other) and rich-text tags. For a new language, copy the source file's structure into the new file and translate every value. Then `check` again.
+- **The user's own LLM key**, faster for many keys: `--provider anthropic` (reads `ANTHROPIC_API_KEY`), `openai`, `gemini`, `groq` or `openrouter` (`<NAME>_API_KEY`).
+- **Babelize's free hosted tier:** `npx babelize auth login` or `BABELIZE_API_KEY`, then `--provider babelize`.
+
+Never ask the user to paste a key into chat.
 
 Match the existing translations' style:
 - Formal or informal "you": `--formality de=formal,es=informal`, or `"formality"` in `.babelize/config.json`.
